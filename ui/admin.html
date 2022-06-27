@@ -10,15 +10,25 @@
   <body>
     <section id="heading">
       <h1>Administration Page</h1>
+      <button id="deconnexion" type="button" class="btn btn-danger" name="button">Deconnexion</button>
     </section>
+    <p id="warning" class="pblur"></p>
     <section class="body">
       <section class="body-head">
         <h4>LISTE DES UTILISATEURS</h4>
-        <button  id="addbtn" type="button" name="button">Add User</button>
+        <button class="btn btn-primary" id="addbtn" type="button" name="button">Add User</button>
       </section>
       <section class="body-body">
         <table class="table">
           <thead>
+            <tr>
+              <th>username</th>
+              <th>name</th>
+              <th>password</th>
+              <th>profil</th>
+              <th></th>
+              <th></th>
+            </tr>
           </thead>
           <tbody>
           </tbody>
@@ -27,26 +37,26 @@
     </section>
 
     <div class="">
-      <form  id="form" method="POST">
+      <form class="" id="form" method="POST">
         <p id="closeBtn">X</p>
         <h4>Ajouter un utilisateur</h4>
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control" id="name">
+          <input type="text" class="form-control" id="name" required>
         </div>
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
-          <input type="text" class="form-control" id="username">
+          <input type="text" class="form-control" id="username" required>
         </div>
         <div class="mb-3">
           <label for="profil" class="form-label">Profil</label>
-          <input type="text" class="form-control" id="profil" value="user" placeholder="user" readonly>
+          <input type="text" class="form-control" id="profil" value="user" placeholder="user" required disabled>
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password">
+          <input type="password" class="form-control" id="password" required>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button id="submitbtn" type="submit" class="btn btn-primary">Ajouter</button>
       </form>
     </div>
   </body>

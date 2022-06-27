@@ -47,6 +47,44 @@ def home():
 
     return '<h1>HELLO YOU</h1>'
 
+
+@app.route('/delete/<string:username>', methods=['GET'])
+def delete_user(username):
+    user_to_delete = "match p = (:ACCESS :USER {username: '%s'}) detach delete p " % (username)
+    try:
+        res = to_database(user_to_delete)
+        return jsonify({'message' : 'user deleted !'}), 200
+    except Exception as e:
+        print(e)
+        return jsonify({'message' : 'mauvaise manipulation !'})
+
+
+@app.route('/update/<string:username>', methods=['PUT'])
+def update_user(username):
+    data = request.get_json()
+    user_to_update = "match p = (:ACCESS :USER {username: '%s'}) return p " % (username)
+    res = from_database(user_to_update)[0].get('p')[0]
+    new_username = data.get('username')
+    new_name     = data.get('name')
+    new_password = data.get('password')
+    new_profil   = data.get('profil')
+
+    update_query = """
+                    match p = (x:ACCESS :USER {username: '%s'}) set x.username = '%s', x.name ='%s', x.password ='%s', x.profil= '%s'
+                    """ % (username, new_username, new_name, new_password, new_profil)
+
+    # print(update_query)
+    if res:
+        try:
+            execute = to_database(update_query)
+        except Exception as e:
+            print(e)
+
+        return jsonify({'message': 'ok'}), 201
+    else:
+        return jsonify({'message' : 'mauvaise manipulation !'})
+
+
 @app.route('/all/users', methods=['GET'])
 def all_users():
     query = "match p = (:USER :ACCESS) return p"
@@ -62,6 +100,7 @@ def all_users():
     else:
         return jsonify({'message': 'no data'}), 404
 
+
 @app.route('/add/user', methods=['POST'])
 def add_user():
     name = username = password = None
@@ -71,7 +110,11 @@ def add_user():
         username = data.get('username')
         password = data.get('password')
         create_user = "create (usr:ACCESS :USER {name:'%s', profil:'user', password:'%s', username:'%s'}) return usr" % (name, password, username)
-        res = to_database(create_user)
+        try:
+            res = to_database(create_user)
+        except Exception as e:
+            return jsonify({'message' : 'cet utilisateur existe deja !'}), 409
+
         return jsonify({'user':'created'}), 201
     else:
         return jsonify({'message': 'mauvaise manipulation !'})
@@ -93,6 +136,8 @@ def connexion():
             return jsonify({'message' : 'you are not allowed !'}), 401
     else:
         return jsonify({'message': 'cet utilisateur n\'existe pas !'}), 404
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

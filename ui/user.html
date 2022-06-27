@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./static/css/user.css">
+    <script src="./static/js/user.js" charset="utf-8" defer></script>
+    <title>User</title>
+  </head>
+  <body>
+    <section class="infouser">
+      <button id="infouser" type="button" class="btn btn-outline-success" name="button">Info User</button>
+      <br>
+      <div class="visible-info">
+        <article>
+          <p>
+            <label for="prenom_value">Prenom:</label>
+            <span id="prenom_value">xxxxxxxxxxx</span>
+          </p>
+          <p>
+            <label for="nom_value">Nom:</label>
+            <span id="nom_value">xxxxxxxxxxx</span>
+          </p>
+          <p>
+            <label for="username_value">username:</label>
+            <span id="username_value">xxxxxxxxxxx</span>
+          </p>
+          <p>
+            <label for="phone_value">Telephone:</label>
+            <span id="phone_value">xxxxxxxxxxx</span>
+          </p>
+          <p>
+            <label for="address_value">Addresse</label>
+            <span id="address_value">xxxxxxxxxxx</span>
+          </p>
+          <p>
+            <label for="profession_value">Profession</label>
+            <span id="profession_value">xxxxxxxxxxx</span>
+          </p>
+          <p>
+            <label for="age_value">Age</label>
+            <span id="age_value">xxxxxxxxxxx</span>
+          </p>
+          <p>
+            <label for="sexe_value">Sexe</label>
+            <span id="sexe_value">xxxxxxxxxxx</span>
+          </p>
+        </article>
+      </div>
+      <form id="infouserform" class="row g-2 cache">
+        <div class="col-md-5">
+          <label for="name" class="form-label">Nom</label>
+          <input type="email" class="form-control" id="name">
+        </div>
+        <div class="col-md-5">
+          <label for="prenom" class="form-label">Prénom</label>
+          <input type="text" class="form-control" id="prenom">
+        </div>
+
+        <div class="col-md-5">
+          <label for="sexe" class="form-label">Sexe</label>
+          <select id="sexe" class="form-select">
+            <option selected>Féminin</option>
+            <option>Masculin</option>
+          </select>
+        </div>
+        <div class="col-md-5">
+          <label for="age" class="form-label">Age</label>
+          <input type="number" max="200" class="form-control" id="age">
+        </div>
+        <div class="col-10">
+          <label for="inputAddress" class="form-label">Addresse</label>
+          <input type="text" class="form-control" id="inputAddress">
+        </div>
+        <div class="col-10">
+          <label for="username" class="form-label">Email</label>
+          <input type="email" class="form-control" id="username" readonly>
+        </div>
+        <div class="col-md-10">
+          <label for="phone" class="form-label">Telephone</label>
+          <input type="tel" class="form-control" id="phone">
+        </div>
+        <div class="col-12 submit">
+          <button type="submit" class="btn btn-primary">Valider</button>
+        </div>
+      </form>
+
+    </section>
+    <section class="tree">
+      <button type="button" class="btn btn-success" name="button">Add Member</button>
+      <section class="upTree">
+        <p>up</p>
+      </section>
+      <section class="innerTree">
+      </section>
+      <section class="downTree">
+        <p>down</p>
+      </section>
+      <br>
+    </section>
+  </body>
+</html>

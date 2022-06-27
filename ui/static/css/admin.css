@@ -16,9 +16,9 @@ section {
 section#heading{
   height: 50px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 section.body-body{
@@ -34,6 +34,18 @@ section.body-head{
 }
 
 thead{
+  width: 95%;
+}
+thead tr th{
+  border: none;
+}
+
+thead tr{
+  display: flex;
+  /* background-color: green; */
+  flex-direction: row;
+  justify-content: space-around;
+  border-bottom: 2px solid;
 }
 
 table{
@@ -44,7 +56,8 @@ table{
 }
 
 form#form{
-  transition: 1s;
+  opacity: .8;
+  transition: .6s;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,7 +67,8 @@ form#form{
   position: absolute;
   top: 15%;
   left: -50%;
-  background-color: #d1d8e0;
+  background-color: #dfe4ea;
+  border-radius: 15px;
 }
 
 form#form input{
@@ -73,4 +87,13 @@ p#closeBtn:hover{
 
 .blur{
   filter: blur(4px);
+}
+
+p#warning{
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
 }

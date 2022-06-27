@@ -4,7 +4,8 @@ const form     = document.querySelector('form')
 const url_connexion = "http://127.0.0.1:5000/connexion"
 const message  = document.querySelector('#message')
 
-
+window.onload = async (e)=>{
+}
 
 
 form.onsubmit = async (e)=>{
@@ -30,6 +31,8 @@ form.onsubmit = async (e)=>{
   }
   else if (data.status == 302) {
     response = await data.json()
+    // console.log(response)
+    localStorage.setItem('user', JSON.stringify(response))
     if (response.profil == 'user') window.location.href = 'user.html'
     if (response.profil == 'admin') window.location.href = 'admin.html'
   }
