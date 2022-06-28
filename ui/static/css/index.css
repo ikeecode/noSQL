@@ -3,6 +3,7 @@ body{
   padding: 0;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 div.body{
@@ -11,12 +12,11 @@ div.body{
   display: flex;
   flex-direction: row;
   /* width: 100vw; */
-  min-height: 100vh;
 }
 
 
 section {
-  border: 2px solid;
+  /* border: 2px solid; */
 }
 
 section#page_connexion{
@@ -30,7 +30,6 @@ section#page_connexion{
 
 section#fantasy{
   width: 60vw;
-  min-height: 100vh;
 }
 
 section#heading{

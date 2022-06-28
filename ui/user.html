@@ -50,35 +50,35 @@
       <form id="infouserform" class="row g-2 cache">
         <div class="col-md-5">
           <label for="name" class="form-label">Nom</label>
-          <input type="email" class="form-control" id="name">
+          <input name="name" type="text" class="form-control" id="name">
         </div>
         <div class="col-md-5">
           <label for="prenom" class="form-label">Prénom</label>
-          <input type="text" class="form-control" id="prenom">
+          <input name="prenom" type="text" class="form-control" id="prenom">
         </div>
 
         <div class="col-md-5">
           <label for="sexe" class="form-label">Sexe</label>
-          <select id="sexe" class="form-select">
-            <option selected>Féminin</option>
-            <option>Masculin</option>
+          <select name="sexe" id="sexe" class="form-select">
+            <option selected>Masculin</option>
+            <option>Féminin</option>
           </select>
         </div>
         <div class="col-md-5">
           <label for="age" class="form-label">Age</label>
-          <input type="number" max="200" class="form-control" id="age">
+          <input name="age" type="number" min="1" max="200" class="form-control" id="age">
         </div>
         <div class="col-10">
-          <label for="inputAddress" class="form-label">Addresse</label>
-          <input type="text" class="form-control" id="inputAddress">
+          <label for="address" class="form-label">Addresse</label>
+          <input name="address" type="text" class="form-control" id="address">
         </div>
         <div class="col-10">
           <label for="username" class="form-label">Email</label>
-          <input type="email" class="form-control" id="username" readonly>
+          <input name="username" type="email" class="form-control" id="username" readonly>
         </div>
         <div class="col-md-10">
           <label for="phone" class="form-label">Telephone</label>
-          <input type="tel" class="form-control" id="phone">
+          <input name="phone" type="tel" class="form-control" id="phone">
         </div>
         <div class="col-12 submit">
           <button type="submit" class="btn btn-primary">Valider</button>
