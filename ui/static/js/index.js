@@ -53,7 +53,7 @@ function randomData(){
 
 var colorScale = d3.scaleLinear()
       .domain([0, 100])
-      .range(['yellow', 'red'])
+      .range(['#00BFFF', '#198754', 'green'])
 
 
 let svg = d3.select('#fantasy')
@@ -98,7 +98,7 @@ function mouve(){
         return value * 0.006
       })
       .attr('fill', function(value){
-        return colorScale(value * Math.random())
+        return colorScale(value * Math.random() * 0.8)
       })
 }
 

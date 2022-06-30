@@ -1,13 +1,28 @@
-body{
-  padding: 0;
-  margin: 0;
-  min-height: 100vh;
-  width: 99vw;
+html{
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+body{
+  padding-top: 50px;
+  /* padding: 0; */
+  margin: 0;
+  height: 100vh;
+  width: 90vw;
+  display: flex;
+  transition: 1s;
+}
+
+.night{
+  background-color: black;
+  opacity: 0.5;
+  color: white;
 }
 
 section{
-  border: 2px solid;
+  /* border: 2px solid; */
   /* height: 50vh; */
 }
 
@@ -15,26 +30,18 @@ section.infouser{
   width: 30vw;
 }
 
-section.tree{
-  width: 70vw;
-  display: flex;
-  flex-direction: column;
-}
 
-section.tree section.innerTree{
-  height: 100%;
-}
-
-form{
+form#infouserform{
+  width: 27.5vw;
   transition: .5s;
-  border: 2px solid;
+  border: 2px solid #198754;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  left: 0;
-  top: -400px;
-  background-color:  #2ed573;
+  top: -330px;
+  background-color:  #198754;
+  border-radius: 10px;
 }
 
 div.submit{
@@ -46,13 +53,18 @@ div.submit{
 
 
 .cache {
-  left: -600px;
+  left: -10px;
+}
+
+.xcache {
+  left: -700px;
 }
 
 div.visible-info{
-  border: 2px solid;
+  /* border: 2px solid; */
   position: relative;
-  top: 25px;
+  width: 25vw;
+  top: 105px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -62,12 +74,15 @@ div.visible-info{
 
 
 span{
-  border: 2px solid;
+  border: 2px solid green;
   font-size: 20px;
   font-weight: bold;
-  border-radius: 5px;
-  background-color: black;
-  color: white;
+  /* border-radius: 5px; */
+  width: 250px;
+  color: #198754;
+  overflow: hidden;
+  /* background-color: black;
+  color: white; */
 }
 
 article{
@@ -82,7 +97,177 @@ p{
   display: flex;
   flex-direction: row;
   align-items: center;
-  border: 2px solid;
+  /* border: 2px solid; */
   width: 100%;
+  justify-content: space-between;
+}
+
+
+/* tree */
+
+
+
+section.tree{
+  /* border: 2px solid; */
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+}
+
+section.tree section.innerTree{
+  height: 100%;
+
+}
+
+
+section.tree section{
+  /* border: 2px solid; */
+}
+
+section.upTree, section.downTree{
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+section.upTree p, section.downTree p{
+  border: 2px solid;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: 1s;
+  width: 50%;
+  font-weight: bold;
+
+}
+
+section.upTree p:hover, section.downTree p:hover{
+  cursor: pointer;
+  background-color: #198754;
+  width: 80%;
+  color: white;
+  font-weight: bold;
+}
+
+
+button#addmember{
+  width: 150px;
+  align-self: flex-end;
+}
+
+
+button#logout{
+  margin-top: -40px;
+  width: 150px;
+  align-self: flex-start;
+}
+
+
+form#admform{
+  transition: 1s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid;
+  position: absolute;
+  height: 50vh;
+  width: 20vw;
+  background-color:  #198754;
+  border-radius: 10px;
+}
+
+form#admform div {
+  width: 80%;
+}
+
+
+.indexed{
+  z-index: -1;
+  opacity: 0;
+}
+
+
+
+section.innerTree{
+  padding-top: 50px;
+  border: 2px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 60vw;
+}
+
+section.innerTree section {
+  width: 100%;
+  height: 100%;
+  /* background: grey; */
+}
+
+
+form#admform h5{
+  text-align: center;
+}
+
+
+i{
+  /* border: 2px solid; */
+  position: fixed;
+  top: 0;
+  left: 15px;
+  color: green;
+  font-size: 148px;
+}
+section#genealogy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section#genealogy section{
+  display: flex;
+  flex-direction: row;
   justify-content: space-around;
+  width: 100%;
+  height: 30%;
+}
+
+
+aside{
+  border-radius: 13px;
+  border: 2px solid;
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 65px;
+}
+
+aside p{
+  color: white;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  top: 0;
+  border: 2px solid;
+  position: relative;
+  background-color: #198754;
+  border-radius: 13px;
+}
+
+
+img{
+  width: 50px;
+  height: 50px;
 }

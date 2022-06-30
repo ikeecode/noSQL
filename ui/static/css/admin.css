@@ -5,10 +5,11 @@ body{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 section {
-  border: 2px solid;
+  /* border: 2px solid; */
   width: 90vw;
 }
 
@@ -67,7 +68,7 @@ form#form{
   position: absolute;
   top: 15%;
   left: -50%;
-  background-color: #dfe4ea;
+  background-color: #198754;
   border-radius: 15px;
 }
 
@@ -96,4 +97,9 @@ p#warning{
   justify-content: center;
   align-items: center;
   font-size: 30px;
+}
+
+
+tbody input{
+  border: none;
 }
