@@ -13,6 +13,17 @@ const tbody = document.querySelector('tbody')
 const warning = document.querySelector('#warning')
 const submitbtn = document.querySelector('#submitbtn')
 const deconnexion = document.querySelector('#deconnexion')
+const user = JSON.parse(localStorage.getItem('user'))
+
+if(!user){
+  window.location.href = 'index.html'
+}
+else if (user.profil!='admin') {
+  alert('You must be admin !')
+  window.location.href = 'index.html'
+}
+
+
 
 deconnexion.addEventListener('click', (e)=>{
   window.location.href = 'index.html'
@@ -37,18 +48,22 @@ window.onload = async (e)=>{
   supprimers.forEach((item, i) => {
     item.onclick = async (e)=>{
       xusername = item.parentNode.parentNode.querySelector('input[name="username"]').value
-      console.log(delete_url + xusername)
-
-      response = await fetch(delete_url + xusername, {
-        methods: 'GET',
-        headers: {
-            "Content-type": "application/json charset=UTF-8",
-            "Access-Control-Allow-Origin" : "*"
+      confirmation = confirm('Voulez vous vraiment supprimer ' + xusername + ' ?')
+      // console.log(delete_url + xusername)
+      if (confirmation) {
+        response = await fetch(delete_url + xusername, {
+          methods: 'GET',
+          headers: {
+              "Content-type": "application/json charset=UTF-8",
+              "Access-Control-Allow-Origin" : "*"
+          }
+        })
+        if (response.status == 200){
+          window.location.reload()
         }
-      })
-
-      if (response.status == 200){
-        window.location.reload()
+      else {
+        return false
+      }
       }
     }
   })

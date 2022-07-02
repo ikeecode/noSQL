@@ -2,10 +2,15 @@ from flask import Flask, jsonify, request, make_response, redirect, url_for
 from flask_cors import CORS
 from flask_migrate import Migrate
 from neo4j import GraphDatabase, basic_auth
+from flask_socketio import SocketIO, send
+
 
 
 app = Flask(__name__)
 CORS(app)
+socketio = SocketIO(app, cors_allowed_origins="*", async_mode="eventlet")
+
+
 
 # pip3 install neo4j-driver
 # python3 example.py
@@ -50,6 +55,11 @@ def to_database(query):
     return results
 
 
+
+@socketio.on('message')
+def handleMessage(msg):
+    print('Message: ' + msg)
+    send(msg, broadcast=True)
 
 @app.route('/')
 def home():
@@ -245,4 +255,5 @@ def connexion():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # app.run(debug=True)
+    socketio.run(app)

@@ -1,30 +1,38 @@
-const user = JSON.parse(localStorage.getItem('user'))
-const complete_url = "http://127.0.0.1:5000/user/infos/"
+const user              = JSON.parse(localStorage.getItem('user'))
+const complete_url      = "http://127.0.0.1:5000/user/infos/"
 const create_member_url = "http://127.0.0.1:5000/create/member"
-const relations_url = "http://127.0.0.1:5000/all/relations/"
-const infouser = document.querySelector('#infouser')
-const infouserform = document.querySelector('#infouserform')
-const submitbtn = document.querySelector('#submitbtn')
-const name = infouserform.querySelector('input#name')
-const username = infouserform.querySelector('input#username')
-const age = infouserform.querySelector('input#age')
-const phone = infouserform.querySelector('input#phone')
-const address = infouserform.querySelector('input#address')
-const prenom = infouserform.querySelector('input#prenom')
-const profession = infouserform.querySelector('input#profession')
-const sexe = infouserform.querySelector('select')
-const addmember = document.querySelector('#addmember')
-const logout = document.querySelector('#logout')
-const admform = document.querySelector('#admform')
-const admprenom = admform.querySelector('#prenom')
-const admnom = admform.querySelector('#nom')
-const parente = admform.querySelector('#parente')
-const darkmode = document.querySelector('i')
-const genealogy =  document.querySelector('#genealogy')
-const parents = genealogy.querySelector('#parents')
-const children = genealogy.querySelector('#children')
-const siblings = genealogy.querySelector('#siblings')
+const relations_url     = "http://127.0.0.1:5000/all/relations/"
+const infouser          = document.querySelector('#infouser')
+const infouserform      = document.querySelector('#infouserform')
+const submitbtn         = document.querySelector('#submitbtn')
+const name              = infouserform.querySelector('input#name')
+const username          = infouserform.querySelector('input#username')
+const age               = infouserform.querySelector('input#age')
+const phone             = infouserform.querySelector('input#phone')
+const address           = infouserform.querySelector('input#address')
+const prenom            = infouserform.querySelector('input#prenom')
+const profession        = infouserform.querySelector('input#profession')
+const sexe              = infouserform.querySelector('select')
+const addmember         = document.querySelector('#addmember')
+const logout            = document.querySelector('#logout')
+const admform           = document.querySelector('#admform')
+const admprenom         = admform.querySelector('#prenom')
+const admnom            = admform.querySelector('#nom')
+const parente           = admform.querySelector('#parente')
+const darkmode          = document.querySelector('i')
+const genealogy         = document.querySelector('#genealogy')
+const parents           = genealogy.querySelector('#parents')
+const children          = genealogy.querySelector('#children')
+const siblings          = genealogy.querySelector('#siblings')
+const chatbtn           = document.querySelector('#chatbtn')
+const member_display    = document.querySelector('section.member_display ul')
+const chat_screen       = document.querySelector('aside.chat_screen section.screen_head figcaption')
+const sendingBtn        = document.querySelector('#sendingBtn')
 
+
+if(!user){
+  window.location.href = 'index.html'
+}
 
 
 // remplir le formulaire avec les infos disponible du user
@@ -77,14 +85,14 @@ submitbtn.addEventListener('click', async (e)=>{
 })
 
 // permet de renseigner les infos des users sur la partie gauche de notre application
-document.querySelector('span#prenom_value').innerHTML = (user.prenom != undefined) ? user.prenom : 'XXXXXXXXXX'
-document.querySelector('span#name_value').innerHTML = (user.name != undefined) ? user.name : 'XXXXXXXXXX'
-document.querySelector('span#username_value').innerHTML = (user.username != undefined) ? user.username : 'XXXXXXXXXX'
-document.querySelector('span#phone_value').innerHTML = (user.phone != undefined) ? user.phone : 'XXXXXXXXXX'
-document.querySelector('span#address_value').innerHTML = (user.address != undefined) ? user.address : 'XXXXXXXXXX'
+document.querySelector('span#prenom_value').innerHTML     = (user.prenom != undefined) ? user.prenom : 'XXXXXXXXXX'
+document.querySelector('span#name_value').innerHTML       = (user.name != undefined) ? user.name : 'XXXXXXXXXX'
+document.querySelector('span#username_value').innerHTML   = (user.username != undefined) ? user.username : 'XXXXXXXXXX'
+document.querySelector('span#phone_value').innerHTML      = (user.phone != undefined) ? user.phone : 'XXXXXXXXXX'
+document.querySelector('span#address_value').innerHTML    = (user.address != undefined) ? user.address : 'XXXXXXXXXX'
 document.querySelector('span#profession_value').innerHTML = (user.profession != undefined) ? user.profession : 'XXXXXXXXXX'
-document.querySelector('span#age_value').innerHTML = (user.age != undefined) ? user.age : 'XXXXXXXXXX'
-document.querySelector('span#sexe_value').innerHTML = (user.sexe != undefined) ? user.sexe : 'XXXXXXXXXX'
+document.querySelector('span#age_value').innerHTML        = (user.age != undefined) ? user.age : 'XXXXXXXXXX'
+document.querySelector('span#sexe_value').innerHTML       = (user.sexe != undefined) ? user.sexe : 'XXXXXXXXXX'
 
 darkmode.onclick = ()=>{
   document.body.classList.toggle('night')
@@ -148,20 +156,36 @@ async function relations(){
   data_parents = data.relations.parents
   data_siblings = data.relations.siblings
   data_children = data.relations.children
+  member_display.innerHTML = ''
   data_parents.forEach((item, i) => {
       card = memberCard(item.p)
+      li = make_member(item.p)
       parents.appendChild(card)
+      member_display.appendChild(li)
   })
 
   data_children.forEach((item, i) => {
       card = memberCard(item.p)
+      li = make_member(item.p)
+      member_display.appendChild(li)
       children.appendChild(card)
   })
 
   data_siblings.forEach((item, i) => {
       card = memberCard(item.p)
+      li = make_member(item.p)
       siblings.appendChild(card)
+      member_display.appendChild(li)
+
   })
+
+  lis = member_display.querySelectorAll('li')
+  lis.forEach((item, i) => {
+    item.addEventListener('click', ()=> {
+      chat_screen.innerHTML = item.querySelector('figcaption').innerHTML
+    })
+  })
+
 }
 
 genealogy.onload = relations()
@@ -179,3 +203,48 @@ function memberCard(member){
 
   return aside
 }
+
+function make_member(member){
+  li = document.createElement('li')
+  li.innerHTML = `
+        <figure>
+          <img src="./static/avatar.svg" alt="">
+          <figcaption>${member.prenom}</figcaption>
+        </figure>
+  `
+  return li
+}
+
+chatbtn.addEventListener('click', ()=>{
+  document.querySelector('div.innerChat').classList.toggle('xshow')
+  document.querySelector('div.innerChat').classList.toggle('show')
+})
+
+
+// sendingBtn.addEventListener('click', ()=>{
+//   message = document.querySelector('#message_input')
+//   if (message.value){
+//     p = document.createElement('p')
+//     p.setAttribute('class', 'sent')
+//     p.innerHTML = message.value
+//     document.querySelector('section.message_display').appendChild(p)
+//     message.value = ''
+//   }
+// })
+
+$(document).ready(function(){
+  var socket = io.connect('http://127.0.0.1:5000');
+
+  socket.on('connect', function(){
+    socket.send(user.username + ' is in the ROOM');
+  })
+
+  socket.on('message', function(msg){
+    $('#messages').append('<li> <p class="instant">' + msg + '</p></li>')
+  })
+
+  $('#sendingBtn').on('click', function(){
+    socket.send($('#message_input').val());
+    $('#message_input').val('');
+  })
+});
